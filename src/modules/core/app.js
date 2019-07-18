@@ -8,22 +8,14 @@ import { SharedEventEmitter } from '../../utils/events';
 import INTERNALS from '../../utils/internals';
 import { isObject } from '../../utils';
 
-import AdMob, { NAMESPACE as AdmobNamespace } from '../admob';
-import Auth, { NAMESPACE as AuthNamespace } from '../auth';
 import Analytics, { NAMESPACE as AnalyticsNamespace } from '../analytics';
 import Config, { NAMESPACE as ConfigNamespace } from '../config';
 import Crashlytics, { NAMESPACE as CrashlyticsNamespace } from '../crashlytics';
-import Database, { NAMESPACE as DatabaseNamespace } from '../database';
-import Firestore, { NAMESPACE as FirestoreNamespace } from '../firestore';
-import Functions, { NAMESPACE as FunctionsNamespace } from '../functions';
 import InstanceId, { NAMESPACE as InstanceIdNamespace } from '../iid';
-import Links, { NAMESPACE as LinksNamespace } from '../links';
 import Messaging, { NAMESPACE as MessagingNamespace } from '../messaging';
 import Notifications, {
   NAMESPACE as NotificationsNamespace,
 } from '../notifications';
-import Performance, { NAMESPACE as PerfNamespace } from '../perf';
-import Storage, { NAMESPACE as StorageNamespace } from '../storage';
 import Utils, { NAMESPACE as UtilsNamespace } from '../utils';
 
 import type { FirebaseOptions } from '../../types';
@@ -41,33 +33,17 @@ export default class App {
 
   _options: FirebaseOptions;
 
-  admob: () => AdMob;
-
   analytics: () => Analytics;
-
-  auth: () => Auth;
 
   config: () => Config;
 
   crashlytics: () => Crashlytics;
 
-  database: () => Database;
-
-  firestore: () => Firestore;
-
-  functions: () => Functions;
-
   iid: () => InstanceId;
-
-  links: () => Links;
 
   messaging: () => Messaging;
 
   notifications: () => Notifications;
-
-  perf: () => Performance;
-
-  storage: () => Storage;
 
   utils: () => Utils;
 
@@ -94,24 +70,16 @@ export default class App {
     }
 
     // modules
-    this.admob = APPS.appModule(this, AdmobNamespace, AdMob);
     this.analytics = APPS.appModule(this, AnalyticsNamespace, Analytics);
-    this.auth = APPS.appModule(this, AuthNamespace, Auth);
     this.config = APPS.appModule(this, ConfigNamespace, Config);
     this.crashlytics = APPS.appModule(this, CrashlyticsNamespace, Crashlytics);
-    this.database = APPS.appModule(this, DatabaseNamespace, Database);
-    this.firestore = APPS.appModule(this, FirestoreNamespace, Firestore);
-    this.functions = APPS.appModule(this, FunctionsNamespace, Functions);
     this.iid = APPS.appModule(this, InstanceIdNamespace, InstanceId);
-    this.links = APPS.appModule(this, LinksNamespace, Links);
     this.messaging = APPS.appModule(this, MessagingNamespace, Messaging);
     this.notifications = APPS.appModule(
       this,
       NotificationsNamespace,
       Notifications
     );
-    this.perf = APPS.appModule(this, PerfNamespace, Performance);
-    this.storage = APPS.appModule(this, StorageNamespace, Storage);
     this.utils = APPS.appModule(this, UtilsNamespace, Utils);
     this._extendedProps = {};
   }
